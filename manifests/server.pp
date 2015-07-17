@@ -23,8 +23,8 @@ class profile_mcollective::server (
 ) inherits profile_mcollective::params {
 
   class { '::mcollective':
-    securityprovider    => 'ssl',
-    middleware_ssl      => true,
+    securityprovider    => 'psk',
+    middleware_ssl      => false,
     middleware_hosts    => $middleware_hosts,
     middleware_ssl_port => $middleware_ssl_port,
     middleware_user     => $middleware_user,

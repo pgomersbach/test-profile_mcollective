@@ -15,8 +15,8 @@ class profile_mcollective::client (
     ssl_ca_cert       => $ssl_ca_cert,
     ssl_server_public => $ssl_server_public,
     middleware_hosts  => $middleware_hosts,
-    middleware_ssl    => true,
-    securityprovider  => 'ssl',
+    middleware_ssl    => false,
+    securityprovider  => 'psk',
     connector         => $connector,
   }
 
