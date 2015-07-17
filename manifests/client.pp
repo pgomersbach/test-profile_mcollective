@@ -8,7 +8,7 @@ class profile_mcollective::client (
   $connector          = $profile_mcollective::params::connector,
 ) {
 
-  mcollective::user { "${::hostname}_client":
+  mcollective::user { 'root':
     homedir           => '/root',
     certificate       => $ssl_server_cert,
     private_key       => $ssl_server_private,
