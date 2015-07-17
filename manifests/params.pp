@@ -4,7 +4,7 @@
 class profile_mcollective::params (
   $main_collective           = 'mcollective',
   $collectives               = undef,
-  $middleware_hosts          = undef,
+  $middleware_hosts          = 'localhost',
   $middleware_user           = 'mcollective',
   $middleware_password       = 'mcollective',
   $middleware_ssl_port       = '61613',
@@ -12,7 +12,7 @@ class profile_mcollective::params (
   $ssl_server_private        = "${::settings::ssldir}/private_keys/${::clientcert}.pem",
   $ssl_server_cert           = "${::settings::ssldir}/certs/${::clientcert}.pem",
   $ssl_ca_cert               = "${::settings::ssldir}/certs/ca.pem",
-  $connector                 = undef,
+  $connector                 = 'rabbitmq',
   $middleware_admin_user     = 'admin',
   $middleware_admin_password = 'mcollective',
   $rabbitmq_vhost            = '/mcollective',
