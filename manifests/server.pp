@@ -57,23 +57,6 @@ class profile_mcollective::server (
   mcollective::plugin { 'filemgr':
     package => true,
   }
-  mcollective::plugin { 'logstash':
-    package    => true,
-    has_client => false,
-    type       => 'audit',
-  }
-  mcollective::server::setting { 'override rpcaudit':
-    setting => 'rpcaudit',
-    value   => '1',
-  }
-  mcollective::server::setting { 'override rpcauditprovider':
-    setting => 'rpcauditprovider',
-    value   => 'logstash',
-  }
-  mcollective::server::setting { 'override plugin.logstash.logfile':
-    setting => 'plugin.logstash.logfile',
-    value   => '/var/log/mcollective-logstashaudit.log',
-  }
   mcollective::server::setting { 'override identity':
     setting => 'identity',
     value   => $::fqdn,
