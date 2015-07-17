@@ -1,0 +1,24 @@
+{
+  "name": "test-profile_mcollective",
+  "version": "0.1.0",
+  "author": "P. Gomersbach",
+  "summary": "mco profile",
+  "license": "Apache-2.0",
+  "source": "https://github.com/pgomersbach/test-profile_mcollective.git",
+  "project_page": "https://github.com/pgomersbach/test-profile_mcollective",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04"
+      ]
+    }
+  ]
+}
