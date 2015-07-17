@@ -4,7 +4,7 @@
 class profile_mcollective::params (
   $main_collective           = 'mcollective',
   $collectives               = undef,
-  $middleware_hosts          = 'localhost',
+  $middleware_hosts          = ['localhost'],
   $middleware_user           = 'mcollective',
   $middleware_password       = 'mcollective',
   $middleware_ssl_port       = '61613',
