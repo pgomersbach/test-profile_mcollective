@@ -25,6 +25,7 @@ class profile_mcollective::server (
   class { '::mcollective':
     client              => true,
     securityprovider    => 'psk',
+    middleware_port     => 6163,
     middleware_ssl      => false,
     middleware_hosts    => $middleware_hosts,
     middleware_ssl_port => $middleware_ssl_port,
