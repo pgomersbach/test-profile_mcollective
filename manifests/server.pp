@@ -39,4 +39,49 @@ class profile_mcollective::server (
     ssl_ca_cert         => $ssl_ca_cert,
   }
 
+  mcollective::plugin { 'shell':
+    package => true,
+  }
+  mcollective::plugin { 'puppet':
+    package => true,
+  }
+  mcollective::plugin { 'package':
+    package => true,
+  }
+  mcollective::plugin { 'service':
+    package => true,
+  }
+  mcollective::plugin { 'nrpe':
+    package => true,
+  }
+  mcollective::plugin { 'filemgr':
+    package => true,
+  }
+  mcollective::plugin { 'logstash':
+    package    => true,
+    has_client => false,
+    type       => 'audit',
+  }
+  mcollective::server::setting { 'override rpcaudit':
+    setting => 'rpcaudit',
+    value   => '1',
+  }
+  mcollective::server::setting { 'override rpcauditprovider':
+    setting => 'rpcauditprovider',
+    value   => 'logstash',
+  }
+  mcollective::server::setting { 'override plugin.logstash.logfile':
+    setting => 'plugin.logstash.logfile',
+    value   => '/var/log/mcollective-logstashaudit.log',
+  }
+  mcollective::server::setting { 'override identity':
+    setting => 'identity',
+    value   => $::fqdn,
+  }
+  mcollective::server::setting { 'set heartbeat_interval':
+    setting => 'plugin.rabbitmq.heartbeat_interval',
+    value   => '30',
+    order   => '50',
+  }
+
 }
