@@ -17,5 +17,5 @@ class profile_mcollective
   # a profile class includes one or more classes, please include below
   include ::profile_mcollective::server
   include ::profile_mcollective::client
-  include ::profile_mcollective::middleware::rabbitmq
+#  include ::profile_mcollective::middleware::rabbitmq
 }
