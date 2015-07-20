@@ -47,21 +47,12 @@ class profile_mcollective::server (
     default  => '/usr/libexec/mcollective/mcollective',
   }
 
- # file{ "${mc_plugindir}/agent":
- #   ensure  => directory,
- #   require => Class[ '::mcollective' ],
- # }
 
-  file{ "${mc_plugindir}/application":
-    ensure  => directory,
-    require => Class[ '::mcollective' ],
-  }
-
-  file{ 'plugin_shell':
-    path    => "${mc_plugindir}/agent",
-    source  => 'puppet:///modules/profile_mcollective/mcollective/plugins/shell',
+  file{ 'mco_plugins':
+    path    => "${mc_plugindir}",
+    source  => 'puppet:///modules/profile_mcollective/mcollective/plugins',
     recurse => true,
-    require => File[ "${mc_plugindir}/agent" ],
+    require => Class[ '::mcollective' ],
   }
 
 #    file{ 'rcon.ddl':
