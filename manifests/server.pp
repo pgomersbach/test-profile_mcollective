@@ -42,26 +42,27 @@ class profile_mcollective::server (
     ssl_ca_cert         => $ssl_ca_cert,
   }
 
-    $mc_plugindir = $::osfamily ? {
-      'Debian' => '/usr/share/mcollective/plugins/mcollective',
-      default  => '/usr/libexec/mcollective/mcollective',
-    }
+  $mc_plugindir = $::osfamily ? {
+    'Debian' => '/usr/share/mcollective/plugins/mcollective',
+    default  => '/usr/libexec/mcollective/mcollective',
+  }
 
-    file{ "${mc_plugindir}/agent":
-      ensure  => directory,
-      require => Class[ '::mcollective' ],
-    }
+  file{ "${mc_plugindir}/agent":
+    ensure  => directory,
+    require => Class[ '::mcollective' ],
+  }
 
-    file{ "${mc_plugindir}/application":
-      ensure  => directory,
-      require => Class[ '::mcollective' ],
-    }
+  file{ "${mc_plugindir}/application":
+    ensure  => directory,
+    require => Class[ '::mcollective' ],
+  }
 
-#    file{ 'rcon.rb':
-#      path    => "${mc_plugindir}/agent/rcon.rb",
-#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/rcon.rb',
-#      require => File[ "${mc_plugindir}/agent" ],
-#    }
+  file{ 'plugin_shell':
+    path    => "${mc_plugindir}/agent",
+    source  => 'puppet:///modules/profile_mcollective/mcollective/plugins/shell',
+    recurse => true,
+    require => File[ "${mc_plugindir}/agent" ],
+  }
 
 #    file{ 'rcon.ddl':
 #      path    => "${mc_plugindir}/agent/rcon.ddl",
