@@ -49,8 +49,9 @@ class profile_mcollective::server (
 #    package => true,
 #  }
   mcollective::plugin { 'plugins':
-    package => true,
-    type    => 'package',
+    package    => true,
+    has_client => false,
+    type       => 'package',
   }
 #  mcollective::plugin { 'service':
 #    package => true,
