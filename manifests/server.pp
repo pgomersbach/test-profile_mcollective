@@ -47,10 +47,10 @@ class profile_mcollective::server (
     default  => '/usr/libexec/mcollective/mcollective',
   }
 
-  file{ "${mc_plugindir}/agent":
-    ensure  => directory,
-    require => Class[ '::mcollective' ],
-  }
+ # file{ "${mc_plugindir}/agent":
+ #   ensure  => directory,
+ #   require => Class[ '::mcollective' ],
+ # }
 
   file{ "${mc_plugindir}/application":
     ensure  => directory,
