@@ -48,7 +48,7 @@ class profile_mcollective::server (
 #  mcollective::plugin { 'puppet':
 #    package => true,
 #  }
-  $mco_packeges = [ 'mcollective-plugins-package' ]
+  $mco_packeges = [ 'mcollective-plugins-package', 'mcollective-plugins-service', 'mcollective-plugins-nrpe', 'mcollective-plugins-filemgr' ]
   package { $mco_packeges:
     ensure => installed,
   }
