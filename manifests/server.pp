@@ -48,26 +48,32 @@ class profile_mcollective::server (
 #  mcollective::plugin { 'puppet':
 #    package => true,
 #  }
-  mcollective::plugin { 'plugins':
-    package    => true,
-    has_client => false,
-    type       => 'package',
+
+  package { 'mco_plugins':
+    ensure => installed,
+    name   => [ 'mcollective-plugins-package' ],
   }
-  mcollective::plugin { 'plugins':
-    package => true,
-    has_client => false,
-    type       => 'service',
-  }
-  mcollective::plugin { 'plugins':
-    package => true,
-    has_client => false,
-    type       => 'nrpe',
-  }
-  mcollective::plugin { 'plugins':
-    package => true,
-    has_client => false,
-    type       => 'filemgr',
-  }
+
+#  mcollective::plugin { 'plugins':
+#    package    => true,
+#    has_client => false,
+#    type       => 'package',
+#  }
+#  mcollective::plugin { 'plugins':
+#    package => true,
+#    has_client => false,
+#    type       => 'service',
+#  }
+#  mcollective::plugin { 'plugins':
+#    package => true,
+#    has_client => false,
+#    type       => 'nrpe',
+#  }
+#  mcollective::plugin { 'plugins':
+#    package => true,
+#    has_client => false,
+#    type       => 'filemgr',
+#  }
   mcollective::server::setting { 'override identity':
     setting => 'identity',
     value   => $::fqdn,
