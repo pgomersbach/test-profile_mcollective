@@ -53,15 +53,21 @@ class profile_mcollective::server (
     has_client => false,
     type       => 'package',
   }
-#  mcollective::plugin { 'service':
-#    package => true,
-#  }
-#  mcollective::plugin { 'nrpe':
-#    package => true,
-#  }
-#  mcollective::plugin { 'filemgr':
-#    package => true,
-#  }
+  mcollective::plugin { 'plugins':
+    package => true,
+    has_client => false,
+    type       => 'service',
+  }
+  mcollective::plugin { 'plugins':
+    package => true,
+    has_client => false,
+    type       => 'nrpe',
+  }
+  mcollective::plugin { 'plugins':
+    package => true,
+    has_client => false,
+    type       => 'filemgr',
+  }
   mcollective::server::setting { 'override identity':
     setting => 'identity',
     value   => $::fqdn,
