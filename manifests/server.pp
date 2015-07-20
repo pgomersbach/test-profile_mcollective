@@ -53,27 +53,9 @@ class profile_mcollective::server (
     source  => 'puppet:///modules/profile_mcollective/mcollective/plugins',
     recurse => true,
     require => Class[ '::mcollective' ],
+    notify  => Service[ '::mcollective' ],
   }
 
-#    file{ 'rcon.ddl':
-#      path    => "${mc_plugindir}/agent/rcon.ddl",
-#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/rcon.ddl',
-#      require => File[ "${mc_plugindir}/agent" ],
-#    }
-
-#    file { 'remotecon.rb':
-#      path    => "${mc_plugindir}/application/remotecon.rb",
-#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/remotecon.rb',
-#      require => File[ "${mc_plugindir}/application" ],
-#    }
-
-
-#  mcollective::plugin { 'shell':
-#    package => true,
-#  }
-#  mcollective::plugin { 'puppet':
-#    package => true,
-#  }
   $mco_packeges = [ 'mcollective-plugins-package', 'mcollective-plugins-service', 'mcollective-plugins-nrpe', 'mcollective-plugins-filemgr' ]
   package { $mco_packeges:
     ensure => installed,
