@@ -48,9 +48,10 @@ class profile_mcollective::server (
 #  mcollective::plugin { 'puppet':
 #    package => true,
 #  }
-#  mcollective::plugin { 'package':
-#    package => true,
-#  }
+  mcollective::plugin { 'plugins':
+    package => true,
+    type    => 'package',
+  }
 #  mcollective::plugin { 'service':
 #    package => true,
 #  }
