@@ -42,6 +42,40 @@ class profile_mcollective::server (
     ssl_ca_cert         => $ssl_ca_cert,
   }
 
+    $mc_plugindir = $::osfamily ? {
+      'Debian' => '/usr/share/mcollective/plugins/mcollective',
+      default  => '/usr/libexec/mcollective/mcollective',
+    }
+
+    file{ "${mc_plugindir}/agent":
+      ensure  => directory,
+      require => Class[ '::mcollective' ],
+    }
+
+    file{ "${mc_plugindir}/application":
+      ensure  => directory,
+      require => Class[ '::mcollective' ],
+    }
+
+#    file{ 'rcon.rb':
+#      path    => "${mc_plugindir}/agent/rcon.rb",
+#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/rcon.rb',
+#      require => File[ "${mc_plugindir}/agent" ],
+#    }
+
+#    file{ 'rcon.ddl':
+#      path    => "${mc_plugindir}/agent/rcon.ddl",
+#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/rcon.ddl',
+#      require => File[ "${mc_plugindir}/agent" ],
+#    }
+
+#    file { 'remotecon.rb':
+#      path    => "${mc_plugindir}/application/remotecon.rb",
+#      source  => 'puppet:///modules/ops_logging/mcollective/plugins/rcon/remotecon.rb',
+#      require => File[ "${mc_plugindir}/application" ],
+#    }
+
+
 #  mcollective::plugin { 'shell':
 #    package => true,
 #  }
@@ -53,26 +87,6 @@ class profile_mcollective::server (
     ensure => installed,
   }
 
-#  mcollective::plugin { 'plugins':
-#    package    => true,
-#    has_client => false,
-#    type       => 'package',
-#  }
-#  mcollective::plugin { 'plugins':
-#    package => true,
-#    has_client => false,
-#    type       => 'service',
-#  }
-#  mcollective::plugin { 'plugins':
-#    package => true,
-#    has_client => false,
-#    type       => 'nrpe',
-#  }
-#  mcollective::plugin { 'plugins':
-#    package => true,
-#    has_client => false,
-#    type       => 'filemgr',
-#  }
   mcollective::server::setting { 'override identity':
     setting => 'identity',
     value   => $::fqdn,
