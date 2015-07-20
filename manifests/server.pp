@@ -24,6 +24,9 @@ class profile_mcollective::server (
 
   class { '::mcollective':
     client              => true,
+    client_config_file  => '/etc/puppetlabs/mcollective/client.cfg',
+    server_config_file  => '/etc/puppetlabs/mcollective/server.cfg',
+    manage_packages     => false,
     securityprovider    => 'psk',
     middleware_port     => 6163,
     middleware_ssl      => false,
@@ -39,24 +42,24 @@ class profile_mcollective::server (
     ssl_ca_cert         => $ssl_ca_cert,
   }
 
-  mcollective::plugin { 'shell':
-    package => true,
-  }
-  mcollective::plugin { 'puppet':
-    package => true,
-  }
-  mcollective::plugin { 'package':
-    package => true,
-  }
-  mcollective::plugin { 'service':
-    package => true,
-  }
-  mcollective::plugin { 'nrpe':
-    package => true,
-  }
-  mcollective::plugin { 'filemgr':
-    package => true,
-  }
+#  mcollective::plugin { 'shell':
+#    package => true,
+#  }
+#  mcollective::plugin { 'puppet':
+#    package => true,
+#  }
+#  mcollective::plugin { 'package':
+#    package => true,
+#  }
+#  mcollective::plugin { 'service':
+#    package => true,
+#  }
+#  mcollective::plugin { 'nrpe':
+#    package => true,
+#  }
+#  mcollective::plugin { 'filemgr':
+#    package => true,
+#  }
   mcollective::server::setting { 'override identity':
     setting => 'identity',
     value   => $::fqdn,
