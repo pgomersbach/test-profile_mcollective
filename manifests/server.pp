@@ -47,13 +47,11 @@ class profile_mcollective::server (
     default  => '/usr/libexec/mcollective/mcollective',
   }
 
-
   file{ 'mco_plugins':
     path    => "${mc_plugindir}",
     source  => 'puppet:///modules/profile_mcollective/mcollective/plugins',
     recurse => true,
     require => Class[ '::mcollective' ],
-    notify  => Service[ '::mcollective::mcollective' ],
   }
 
   $mco_packeges = [ 'mcollective-plugins-package', 'mcollective-plugins-service', 'mcollective-plugins-nrpe', 'mcollective-plugins-filemgr' ]
