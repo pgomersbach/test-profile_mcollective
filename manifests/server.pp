@@ -48,7 +48,7 @@ class profile_mcollective::server (
   }
 
   file{ 'mco_plugins':
-    path    => "${mc_plugindir}",
+    path    => ${mc_plugindir},
     source  => 'puppet:///modules/profile_mcollective/mcollective/plugins',
     recurse => true,
     require => Class[ '::mcollective' ],
