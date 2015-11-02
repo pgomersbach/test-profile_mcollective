@@ -50,6 +50,7 @@ class profile_mcollective::server (
   file{ 'plugindir':
     ensure => directory,
     path   => '/opt/puppetlabs/mcollective/plugins',
+  }
 
   file{ 'mco_plugins':
     path    => $mc_plugindir,
