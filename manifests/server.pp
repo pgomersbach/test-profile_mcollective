@@ -43,7 +43,7 @@ class profile_mcollective::server (
   }
 
   $mc_plugindir = $::osfamily ? {
-    'Debian' => '/opt/puppetlabs/mcollective/plugins',
+    'Debian' => '/opt/puppetlabs/mcollective/plugins/mcollective',
     default  => '/usr/libexec/mcollective/mcollective',
   }
 
